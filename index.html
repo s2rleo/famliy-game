@@ -1,11 +1,187 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#12121a"><meta name="description" content="جلسة وفلة — تحديات وأسئلة عربية تجمع الأهل والأصحاب. اختاروا فئاتكم وابدأوا التحدي."><title>جلسة وفلة | جمعتكم أحلى</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"></head><body>
-<header class="top"><a class="brand" href="./"><span class="brand-icon">✦</span><span>جلسة <b>وفلة</b></span></a><span class="top-note">جمعتكم أحلى <span class="live-dot"></span></span><button id="help" class="icon-btn" aria-label="طريقة اللعب">؟</button></header>
-<main>
-<section id="setup" class="screen"><div class="hero"><div class="eyebrow"><span></span> أبعدوا الجوالات… إلا هذا!</div><h1>كل جلسة تستاهل<br><em>شوية تحدّي.</em></h1><p>فريقين، أسئلة، وضحك كثير. اجمعوا الربع<br class="desktop"> وخلّونا نشوف مين قدّها الليلة.</p><div class="hero-tags"><span>✦ <b id="total">220</b> سؤال وتحدّي</span><span>◷ بدون تسجيل</span><span>♡ لكل العائلة</span></div><div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="art-card back">✦</div><div class="art-card front"><span>سؤال الليلة</span><strong>مين<br>قدّها؟</strong><small>جلسة وفلة ↗</small></div><span class="spark one">✳</span><span class="spark two">✦</span><span class="art-pill">الحماس يبدأ هنا 🔥</span></div></div>
-<div id="resume-box" class="resume" hidden><span>فيه جلسة ما خلصتوها 👀</span><button id="resume">كمّلوا الجلسة ←</button><button id="discard" class="quiet">حذف</button></div>
-<div class="setup-grid"><section class="categories"><div class="section-title"><div><span class="step">01</span><h2>وش جوّكم اليوم؟</h2></div><button id="select-all" class="text-btn">اختيار الكل</button></div><p class="muted">اختاروا فئة أو أكثر. الباقي علينا.</p><div id="category-grid"></div><p class="small muted">«مين يقصد؟» فقرة تصويت بدون نقاط، وتُستبعد من وضع التحدّي.</p></section>
-<aside class="settings"><div class="section-title"><div><span class="step">02</span><h2>جهّزوا التحدّي</h2></div></div><label for="mode">نوع الجلسة</label><div class="segmented"><button class="selected" id="quiz-mode" type="button">🏆 تحدّي الفرق</button><button id="social-mode" type="button">💬 سوالف وتصويت</button></div><input id="mode" type="hidden" value="quiz"><div id="team-fields"><div class="team-input"><i class="team-dot coral"></i><label for="team1">الفريق الأول</label><input id="team1" maxlength="24" value="الصقور" autocomplete="off"></div><div class="team-input"><i class="team-dot lavender"></i><label for="team2">الفريق الثاني</label><input id="team2" maxlength="24" value="النمور" autocomplete="off"></div></div><div class="row"><div><label for="rounds">عدد الأسئلة</label><select id="rounds"><option value="10">10 أسئلة</option><option value="20" selected>20 سؤالًا</option><option value="30">30 سؤالًا</option><option value="50">50 سؤالًا</option></select></div><div><label for="duration">وقت السؤال</label><select id="duration"><option value="15">15 ثانية</option><option value="30" selected>30 ثانية</option><option value="60">60 ثانية</option><option value="0">بدون مؤقت</option></select></div></div><div class="session-note">✦ <span id="pool-count"></span></div><button id="start" class="primary">يلا نبدأ الجلسة <span>←</span></button><p class="small center muted">جهاز واحد يكفي. خلّوا أحدكم يمسك التحكيم.</p><p id="error" role="alert"></p></aside></div></section>
-<section id="play" class="screen" hidden><div class="play-top"><button id="back" class="quiet">→ حفظ وخروج</button><span id="progress-label"></span><button id="pause" class="quiet">إيقاف مؤقت</button></div><div class="progress"><div id="progress-fill"></div></div><div id="scores" class="scores"></div><article class="question-card"><div class="question-meta"><span id="q-category" class="badge"></span><span id="timer" class="timer" aria-label="الوقت المتبقي"></span></div><p class="muted small" id="q-hint">اقرأوا السؤال بصوت عالٍ</p><h2 id="question" tabindex="-1"></h2><div id="answer" class="answer" hidden><small>الإجابة</small><p id="answer-text"></p></div><button id="reveal" class="primary">اكشفوا الإجابة <span>↗</span></button><div id="judging" hidden><p class="muted small" id="judge-label">مين جاوب صح؟ الحكم يختار الفريق.</p><div class="award-row"><button id="award1" class="award coral-bg"></button><button id="award2" class="award purple-bg"></button></div><button id="skip" class="quiet">ما أحد جاوب • السؤال التالي ←</button></div><div id="pause-layer" hidden><span>الجلسة متوقفة مؤقتًا</span><button id="continue" class="primary">نكمل؟ ←</button></div></article><div class="play-bottom"><button id="undo" class="text-btn">↶ تراجع عن آخر نتيجة</button><span class="muted small">الإجابة الصحيحة = 10 نقاط</span></div></section>
-<section id="results" class="screen result" hidden><div class="trophy">✦</div><span class="eyebrow">جلسة تستاهل الإعادة</span><h1 id="winner"></h1><p class="muted" id="result-sub"></p><div id="final-scores" class="scores"></div><button id="share" class="primary">انسخ نتيجة الجلسة ↗</button><button id="again" class="quiet">جلسة جديدة ←</button><p id="share-status" role="status"></p></section>
-</main><footer><span>جلسة <b>وفلة</b> <span class="footer-star">✦</span></span><span>أسئلة تجمعنا، وذكريات تبقى.</span><button id="privacy" class="text-btn">الخصوصية</button></footer>
-<dialog id="info"><button id="close-dialog" class="icon-btn" aria-label="إغلاق">×</button><h2 id="info-title"></h2><p id="info-text"></p></dialog><div id="toast" role="status"></div><script src="./questions.js"></script><script src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#15141f">
+  <meta name="description" content="جلسة وفلة، لعبة عربية تجمع الأهل والأصحاب في تحدي الفرق، تحدي الحروف، وسوالف وتصويت.">
+  <title>جلسة وفلة | لعبة العائلة والأصحاب</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="top shell">
+    <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">✦</span><span>جلسة <b>وفلة</b></span></a>
+    <button id="help" class="quiet bordered" type="button">طريقة اللعب</button>
+  </header>
+  <main class="shell">
+    <section id="setup" class="screen">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span aria-hidden="true">✦</span> لعبة العائلة والأصحاب</div>
+          <h1>كل جلسة تستاهل<br><em>شوية تحدّي.</em></h1>
+          <p>اجمعوا الربع، اختاروا نمطكم، وشوفوا مين قدّها الليلة.</p>
+          <p class="bank-total"><strong id="total"></strong> سؤال وتحدّي</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit"></div>
+          <div class="art-card art-back"><span>ب</span><span>م</span><span>ر</span><span>س</span><span>ط</span><span>ن</span></div>
+          <div class="art-card art-front"><span class="art-star">✦</span><strong>مين<br>قدّها؟</strong><span class="art-brand">جلسة وفلة</span></div>
+          <span class="art-spark">✳</span>
+        </div>
+      </div>
+
+      <div id="resume-box" class="resume" hidden>
+        <span id="resume-label">فيه جلسة ما خلصتوها</span>
+        <button id="resume" type="button" class="quiet bordered">كمّلوا الجلسة</button>
+        <button id="discard" type="button" class="quiet">حذف</button>
+      </div>
+      <div id="letters-resume-box" class="resume" hidden>
+        <span>عندكم جولة حروف محفوظة</span>
+        <button id="letters-resume" type="button" class="quiet bordered">كمّلوا الحروف</button>
+        <button id="letters-discard" type="button" class="quiet">حذف</button>
+      </div>
+
+      <section class="mode-section" aria-labelledby="mode-title">
+        <h2 id="mode-title">اختاروا نمط اللعب</h2>
+        <div class="mode-grid" role="group" aria-label="نمط اللعب">
+          <button id="quiz-mode" type="button" class="mode selected" aria-pressed="true">
+            <span class="mode-icon quiz-icon" aria-hidden="true">✦</span>
+            <span><strong>تحدّي الفرق</strong><small>أسئلة من الفئات اللي تختارونها</small></span>
+          </button>
+          <button id="letters-mode" type="button" class="mode" aria-pressed="false">
+            <span class="mode-icon letters-icon" aria-hidden="true">أ</span>
+            <span><strong>تحدّي الحروف</strong><small>اكسبوا الخانات وكوّنوا خطوط</small></span>
+          </button>
+          <button id="social-mode" type="button" class="mode" aria-pressed="false">
+            <span class="mode-icon social-icon" aria-hidden="true">«»</span>
+            <span><strong>سوالف وتصويت</strong><small>فقرة للضحك بدون نقاط</small></span>
+          </button>
+        </div>
+      </section>
+
+      <div class="setup-grid">
+        <section class="categories" id="quiz-setup" aria-labelledby="categories-title">
+          <div class="section-title"><h2 id="categories-title">وش جوّكم اليوم؟</h2><button id="select-all" class="text-btn" type="button">اختيار الكل</button></div>
+          <p class="muted section-description">اختاروا فئة أو أكثر للجلسة.</p>
+          <div id="category-grid"></div>
+        </section>
+        <section class="mode-guide" id="letters-setup" aria-labelledby="letters-title" hidden>
+          <div class="section-title"><h2 id="letters-title">كيف تلعبون الحروف؟</h2></div>
+          <ol class="guide-steps">
+            <li>الفريق اللي عليه الدور يختار خانة. أول حرف من الإجابة هو حرف الخانة.</li>
+            <li>الإجابة الصحيحة تلوّن الخلية بلون الفريق وتعطيه نقاطها. إذا أخطأ، ينتقل السؤال للفريق الثاني.</li>
+            <li>كل صف أفقي كامل أو خط مائل يصل أول صف بآخر صف بلون فريقكم يعطيكم <strong>٥٠٠</strong> نقطة إضافية.</li>
+            <li>بعد انتهاء الخانات، يفوز الفريق صاحب أعلى نقاط.</li>
+          </ol>
+          <div class="letter-sample" aria-hidden="true">
+            <div class="letter-sample-row"><span class="sample-owned">ج</span><span>م</span><span>هـ</span></div>
+            <div class="letter-sample-row"><span class="sample-owned">ر</span><span>ث</span><span>ب</span></div>
+            <div class="letter-sample-row"><span>ع</span><span class="owned-1">ي</span><span>س</span></div>
+          </div>
+        </section>
+        <section class="mode-guide" id="social-setup" aria-labelledby="social-title" hidden>
+          <div class="section-title"><h2 id="social-title">مين يقصد؟</h2></div>
+          <p>اقرؤوا السؤال، وعدّوا إلى ثلاثة وصوّتوا مع بعض. بعد كل تصويت انتقلوا للسؤال اللي بعده.</p>
+          <p class="muted">خلّوها خفيفة، وكل واحد له حرية يتخطّى أي سؤال.</p>
+        </section>
+
+        <aside class="settings">
+          <h2>جهّزوا الجلسة</h2>
+          <div id="team-fields" class="row">
+            <div class="team-input"><label for="team1"><i class="team-dot coral"></i> الفريق الأول</label><input id="team1" maxlength="24" value="الصقور" autocomplete="off"></div>
+            <div class="team-input"><label for="team2"><i class="team-dot lavender"></i> الفريق الثاني</label><input id="team2" maxlength="24" value="النمور" autocomplete="off"></div>
+          </div>
+          <div id="difficulty-fields">
+            <label for="difficulty">الصعوبة</label>
+            <select id="difficulty"><option value="0">مستويات متنوعة</option><option value="1">سهل</option><option value="2">متوسط</option><option value="3">صعب</option></select>
+          </div>
+          <div class="row">
+            <div id="rounds-field"><label for="rounds">عدد الأسئلة</label>
+              <select id="rounds"><option value="10">١٠ أسئلة</option><option value="20" selected>٢٠ سؤالًا</option><option value="30">٣٠ سؤالًا</option><option value="50">٥٠ سؤالًا</option><option value="75">٧٥ سؤالًا</option><option value="100">١٠٠ سؤال</option></select>
+            </div>
+            <div id="board-size-field" hidden><label for="board-size">حجم اللوحة</label>
+              <select id="board-size"><option value="4">٤ × ٤</option><option value="5" selected>٥ × ٥</option></select>
+            </div>
+            <div><label for="duration">وقت السؤال</label>
+              <select id="duration"><option value="15">١٥ ثانية</option><option value="30" selected>٣٠ ثانية</option><option value="45">٤٥ ثانية</option><option value="60">٦٠ ثانية</option><option value="0">بدون مؤقت</option></select>
+            </div>
+          </div>
+          <p class="session-note" id="pool-count" role="status"></p>
+          <button id="start" type="button" class="primary">يلا نبدأ الجلسة</button>
+          <p class="muted small settings-note" id="settings-note">جهاز واحد يكفي. خلّوا أحدكم يمسك التحكيم.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="play" class="screen play-screen" hidden>
+      <div class="play-top"><button id="back" class="quiet bordered" type="button">حفظ وخروج</button><span id="progress-label"></span><button id="pause" class="quiet bordered" type="button">إيقاف مؤقت</button></div>
+      <div class="progress" role="progressbar" aria-label="تقدّم الجلسة" aria-valuemin="0" aria-valuemax="100"><div id="progress-fill"></div></div>
+      <div id="scores" class="scores"></div>
+      <article class="question-card">
+        <div class="question-meta"><span id="q-category" class="badge"></span><span id="timer" class="timer" aria-label="الوقت المتبقي"></span></div>
+        <p class="muted small" id="q-hint"></p>
+        <h2 id="question" tabindex="-1"></h2>
+        <div id="quiz-controls">
+          <div id="answer" class="answer" hidden><span>الإجابة</span><p id="answer-text"></p></div>
+          <button id="reveal" class="primary" type="button">اكشفوا الإجابة</button>
+          <div id="judging" hidden>
+            <p class="muted small" id="judge-label"></p>
+            <div id="award-row" class="award-row"><button id="award1" class="award coral-bg" type="button"></button><button id="award2" class="award purple-bg" type="button"></button></div>
+            <button id="skip" class="quiet" type="button">ما أحد جاوب</button>
+          </div>
+        </div>
+        <div id="pause-layer" class="pause-layer" hidden><span>الجلسة متوقفة مؤقتًا</span><button id="continue" class="primary" type="button">نكمل؟</button></div>
+      </article>
+      <div class="play-bottom"><button id="undo" class="text-btn" type="button">تراجع عن آخر نتيجة</button><span id="play-note" class="muted small"></span></div>
+    </section>
+
+    <section id="letters-play" class="screen letters-screen" hidden>
+      <div class="play-top"><button id="letters-back" class="quiet bordered" type="button">حفظ وخروج</button><span id="letters-progress"></span></div>
+      <div id="letters-scores" class="scores letters-scores"></div>
+      <div class="letter-panel">
+        <div class="letter-board-header"><div><h2 id="board-title" tabindex="-1">لوحة الحروف</h2><p id="board-turn" role="status"></p></div><button id="random-letter" class="quiet bordered" type="button">حرف عشوائي</button></div>
+        <div id="letter-grid" class="letter-grid" role="group" aria-label="لوحة الحروف"></div>
+        <div class="letter-board-footer"><span>الخط الكامل +٥٠٠ نقطة</span><button id="letters-undo" class="text-btn" type="button">تراجع عن آخر خانة</button></div>
+      </div>
+    </section>
+
+    <section id="results" class="screen result" hidden>
+      <div class="trophy" aria-hidden="true">✦</div>
+      <h1 id="winner" tabindex="-1"></h1>
+      <p class="muted" id="result-sub"></p>
+      <div id="final-scores" class="scores"></div>
+      <button id="share" class="primary" type="button">انسخوا نتيجة الجلسة</button>
+      <button id="again" class="quiet" type="button">جلسة جديدة</button>
+      <p id="share-status" role="status"></p>
+    </section>
+  </main>
+  <footer class="shell"><span>جلسة <b>وفلة</b> <span class="footer-star" aria-hidden="true">✦</span></span><button id="privacy" class="text-btn" type="button">الخصوصية</button></footer>
+
+  <dialog id="info" aria-labelledby="info-title"><button id="close-dialog" class="icon-btn" type="button" aria-label="إغلاق">×</button><h2 id="info-title"></h2><p id="info-text"></p></dialog>
+  <dialog id="letter-dialog" aria-labelledby="letter-question">
+    <div class="question-meta"><span id="letter-badge" class="badge"></span><span id="letter-timer" class="timer" aria-label="الوقت المتبقي"></span></div>
+    <p id="letter-attempt" class="muted" role="status"></p>
+    <h2 id="letter-question" tabindex="-1"></h2>
+    <p id="letter-expired" class="time-expired" role="status" hidden>انتهى الوقت.</p>
+    <div id="letter-controls">
+      <div id="letter-answer" class="answer" hidden><span>الإجابة</span><p id="letter-answer-text"></p></div>
+      <div id="letter-judging" class="award-row"><button id="letter-correct" class="award coral-bg" type="button">إجابة صحيحة</button><button id="letter-miss" class="award neutral-bg" type="button"></button></div>
+      <button id="letter-next" class="primary" type="button" hidden>العودة للوحة</button>
+      <div id="letter-dialog-actions" class="dialog-actions"><button id="letter-peek" class="text-btn" type="button" aria-controls="letter-answer" aria-expanded="false">الإجابة للحكم</button><button id="letter-pause" class="text-btn" type="button">إيقاف مؤقت</button><button id="letter-save" class="quiet" type="button">حفظ وخروج</button></div>
+    </div>
+    <div id="letter-pause-layer" class="pause-layer" hidden><span>الجولة متوقفة مؤقتًا</span><button id="letter-continue" class="primary" type="button">نكمل؟</button><button id="letter-pause-save" class="quiet" type="button">حفظ وخروج</button></div>
+  </dialog>
+  <div id="toast" role="status" hidden></div>
+
+  <script src="./questions.js"></script>
+  <script src="./trivia-world.js"></script>
+  <script src="./trivia-science.js"></script>
+  <script src="./trivia-culture.js"></script>
+  <script src="./trivia-extra.js"></script>
+  <script src="./letters-bank.js"></script>
+  <script src="./bank.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
